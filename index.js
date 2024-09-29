@@ -10,9 +10,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  return res.status(200).send("Event Registration Backend");
+});
+
 connectDB();
 
 app.use("/api/register", require("./routes/registration"));
+app.use(`/${process.env.SECRET_ROUTE}`, require("./routes/hidden"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
