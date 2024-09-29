@@ -13,6 +13,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/register", require("./routes/registration"));
+app.use(`/${process.env.SECRET_ROUTE}`, require("./routes/hidden"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
